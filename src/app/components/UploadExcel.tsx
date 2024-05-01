@@ -41,7 +41,7 @@ function UploadExcel() {
 
 	return (
 		<section>
-			<label htmlFor="arquivo" className="block cursor-pointer">
+			<label htmlFor="arquivo" className="block cursor-pointer w-fit">
 				Escola um arquivo no formato ".xlsx" ou ".xls" *
 			</label>
 			<p>
