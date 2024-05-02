@@ -15,44 +15,46 @@ function AmortizacaoValues() {
 	return (
 		<div className="mt-5">
 			{amortizacao.length > 0 && (
-				<table className="w-72">
-					<thead>
-						<tr className="bg-blue-200 text-black uppercase text-sm">
-							<th className={`px-4 py-2 `}>Valor</th>
-							<th className={`px-4 py-2 text-left`}>Data</th>
-							<th className={`px-4 py-2 `}>Deletar</th>
-							<th className={`px-4 py-2 `}>Montante</th>
-						</tr>
-					</thead>
-					<tbody>
-						{amortizacao.map((item) => (
-							<tr key={item.id} className="text-center">
-								<td className="px-4 py-2">
-									{item.valor.toLocaleString('pt-br', {
-										style: 'currency',
-										currency: 'BRL',
-									})}
-								</td>
-								<td className="px-4 py-2 text-left">
-									{formatAmortizacaoDate(item.data)}
-								</td>
-								<td
-									className="px-4 py-2 cursor-pointer"
-									data-id={item.id}
-									onClick={deleteAmortizacao}
-								>
-									🗑️
-								</td>
-								<td className="px-4 py-2">
-									{item.montante.toLocaleString('pt-br', {
-										style: 'currency',
-										currency: 'BRL',
-									})}
-								</td>
+				<div className="overflow-scroll">
+					<table className="w-72">
+						<thead>
+							<tr className="bg-blue-200 text-black uppercase text-sm">
+								<th className={`px-4 py-2 `}>Valor</th>
+								<th className={`px-4 py-2 text-left`}>Data</th>
+								<th className={`px-4 py-2 `}>Deletar</th>
+								<th className={`px-4 py-2 `}>Montante</th>
 							</tr>
-						))}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{amortizacao.map((item) => (
+								<tr key={item.id} className="text-center">
+									<td className="px-4 py-2">
+										{item.valor.toLocaleString('pt-br', {
+											style: 'currency',
+											currency: 'BRL',
+										})}
+									</td>
+									<td className="px-4 py-2 text-left">
+										{formatAmortizacaoDate(item.data)}
+									</td>
+									<td
+										className="px-4 py-2 cursor-pointer"
+										data-id={item.id}
+										onClick={deleteAmortizacao}
+									>
+										🗑️
+									</td>
+									<td className="px-4 py-2">
+										{item.montante.toLocaleString('pt-br', {
+											style: 'currency',
+											currency: 'BRL',
+										})}
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
 			)}
 		</div>
 	);

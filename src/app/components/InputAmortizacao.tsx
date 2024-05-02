@@ -29,7 +29,7 @@ function InputAmortizacao() {
 	return (
 		<section className="mt-4">
 			<p className="text-xl">Digite os valores e as datas das amortizações</p>
-			<div className="text-black w-fit flex gap-4">
+			<div className="text-black grid gap-2 sm:flex sm:max-w-fit">
 				<div>
 					<label htmlFor="valor" className="text-white block">
 						Valor
@@ -37,7 +37,7 @@ function InputAmortizacao() {
 					<input
 						type="number"
 						id="valor"
-						className="p-1"
+						className="p-1 w-full"
 						step={0.05}
 						min={0}
 						value={valor}
@@ -57,12 +57,12 @@ function InputAmortizacao() {
 					/>
 				</div>
 
-				<span
-					className="text-white mt-auto bg-blue-500 h-8 p-1 rounded-md hover:bg-blue-600 cursor-pointer active:translate-y-1 transition-all"
+				<button
+					className="text-white mt-auto bg-blue-500 h-8 px-2 py-1 rounded-md hover:bg-blue-600 cursor-pointer active:translate-y-1 transition-all w-full "
 					onClick={addAmortizacao}
 				>
 					Adicionar
-				</span>
+				</button>
 			</div>
 			<AmortizacaoValues />
 		</section>

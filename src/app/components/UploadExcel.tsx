@@ -44,7 +44,7 @@ function UploadExcel() {
 			<label htmlFor="arquivo" className="block cursor-pointer w-fit">
 				Escola um arquivo no formato ".xlsx" ou ".xls" *
 			</label>
-			<p>
+			<p className="mb-2">
 				*O cabeçalho da sua planilha deve ter os seguintes nomes:{' '}
 				<span className="font-bold">Valor Pago</span> e{' '}
 				<span className="font-bold">Data Pgto</span>

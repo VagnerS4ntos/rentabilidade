@@ -47,8 +47,6 @@ function Calculate() {
 					),
 				}));
 
-				updateAmortizacao(amortizacaoMontante);
-
 				const totalAmortizacaoMontante = amortizacaoMontante.reduce(
 					(total, item) => {
 						return total + item.montante;
@@ -72,10 +70,9 @@ function Calculate() {
 				if (looping == 0 && soma > alvo) {
 					alert('Escolha uma taxa menor ou aumente o valor desejado');
 					taxa2 = 0;
-
 					break;
 				}
-
+				updateAmortizacao(amortizacaoMontante);
 				looping = 1;
 				taxa2 += 0.00001;
 			}
