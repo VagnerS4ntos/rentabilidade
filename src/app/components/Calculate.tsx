@@ -4,20 +4,25 @@ import { useExcelData, useAmortizacao, useValores } from '@/states/global';
 import { formatDate, montante } from '../helpers/utils';
 import { differenceInMonths } from 'date-fns';
 import { amortizacaoDataT } from '../types/config';
+import { compareAsc } from 'date-fns';
 
 function Calculate() {
 	const { excelData } = useExcelData((state) => state);
 	const { amortizacao, updateAmortizacao } = useAmortizacao((state) => state);
-	const { alvo, data, taxa, setTaxaDesejada, taxaDesejada } = useValores(
-		(state) => state,
-	);
+	const { alvo, data, taxa, setTaxaDesejada, taxaDesejada, todasAsDatas } =
+		useValores((state) => state);
 
 	function calcular() {
+		if (compareAsc(data, todasAsDatas[0]) == -1) {
+			alert('Escolha uma data de referência posterior à atual');
+			setTaxaDesejada(0);
+			return;
+		}
+		let soma = 0;
 		let looping = 0;
 
 		if (excelData.length > 0 || amortizacao.length > 0) {
 			let taxa2 = taxa;
-			let soma = 0;
 			let amortizacaoMontante: amortizacaoDataT[] = [];
 
 			const amortizacoesDatas = amortizacao.map((item) =>
@@ -34,7 +39,7 @@ function Calculate() {
 				(item) => !amortizacoesDatas.includes(item['Data Pgto']),
 			);
 
-			while (soma < alvo) {
+			while (soma <= alvo) {
 				soma = 0;
 				amortizacaoMontante = [];
 
@@ -72,6 +77,7 @@ function Calculate() {
 					taxa2 = 0;
 					break;
 				}
+
 				updateAmortizacao(amortizacaoMontante);
 				looping = 1;
 				taxa2 += 0.00001;
@@ -84,9 +90,9 @@ function Calculate() {
 	return (
 		<div>
 			{taxaDesejada > 0 && (
-				<p className="text-2xl mt-4">
+				<p className="text-xl mt-4">
 					A taxa precisa ser de:{' '}
-					<span className="text-red-600">
+					<span className="text-red-600 font-bold">
 						{(taxaDesejada * 100).toFixed(2).replace('.', ',') + '%'}
 					</span>
 				</p>

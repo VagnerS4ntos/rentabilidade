@@ -1,10 +1,16 @@
 'use client';
 import React from 'react';
 import { useValores, useAmortizacao, useExcelData } from '@/states/global';
-import { defaultAmortizacaoData, defaultExcelData } from '../helpers/utils';
+import {
+	defaultAmortizacaoData,
+	defaultExcelData,
+	defaultTodasAsDatas,
+} from '../helpers/utils';
 
 function UseDefaultValues() {
-	const { setValorPadrao, valorPadrao } = useValores((state) => state);
+	const { setValorPadrao, valorPadrao, setTodasAsDatas } = useValores(
+		(state) => state,
+	);
 	const { updateAmortizacao } = useAmortizacao((state) => state);
 	const { setExcelData } = useExcelData((state) => state);
 
@@ -12,12 +18,14 @@ function UseDefaultValues() {
 		setValorPadrao(true);
 		updateAmortizacao(defaultAmortizacaoData);
 		setExcelData(defaultExcelData);
+		setTodasAsDatas(defaultTodasAsDatas.sort().reverse());
 	}
 
 	function disableDefaultValues() {
 		setValorPadrao(false);
 		updateAmortizacao([]);
 		setExcelData([]);
+		setTodasAsDatas([]);
 	}
 
 	return (

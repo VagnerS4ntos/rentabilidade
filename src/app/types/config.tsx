@@ -47,6 +47,8 @@ const valoresSchema = z.object({
 	setTaxaDesejada: z.function().args(z.number()),
 	valorPadrao: z.boolean(),
 	setValorPadrao: z.function().args(z.boolean()),
+	todasAsDatas: z.array(z.string()),
+	setTodasAsDatas: z.function().args(z.array(z.string())),
 });
 
 export type valoresT = z.infer<typeof valoresSchema>;

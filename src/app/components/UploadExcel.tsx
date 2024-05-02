@@ -11,9 +11,12 @@ import { useExcelData, useAmortizacao, useValores } from '@/states/global';
 function UploadExcel() {
 	const { setExcelData } = useExcelData((state) => state);
 	const { updateAmortizacao } = useAmortizacao((state) => state);
-	const { setValorPadrao } = useValores((state) => state);
+	const { setValorPadrao, setTodasAsDatas, setTaxaDesejada } = useValores(
+		(state) => state,
+	);
 
 	function handleFileUpload(e: any) {
+		setTaxaDesejada(0);
 		const reader = new FileReader();
 		const file = e.target.files[0];
 		reader.readAsArrayBuffer(file);
@@ -36,12 +39,18 @@ function UploadExcel() {
 			}));
 
 			setExcelData(formatedDates);
+
+			const datas = formatedDates
+				.map((item) => item['Data Pgto'])
+				.sort()
+				.reverse();
+			setTodasAsDatas(datas);
 		};
 	}
 
 	return (
 		<section>
-			<label htmlFor="arquivo" className="block cursor-pointer w-fit">
+			<label htmlFor="arquivo" className="block cursor-pointer w-fit text-xl">
 				Escola um arquivo no formato ".xlsx" ou ".xls" *
 			</label>
 			<p className="mb-2">

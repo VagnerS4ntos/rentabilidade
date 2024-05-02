@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { v4 as uid } from 'uuid';
-import { useAmortizacao } from '@/states/global';
+import { useAmortizacao, useValores } from '@/states/global';
 import AmortizacaoValues from './AmortizacaoValues';
 
 function InputAmortizacao() {
@@ -9,6 +9,7 @@ function InputAmortizacao() {
 	const [data, setData] = React.useState<string>('');
 
 	const { updateAmortizacao, amortizacao } = useAmortizacao((state) => state);
+	const { setTodasAsDatas, todasAsDatas } = useValores((state) => state);
 
 	function addAmortizacao() {
 		if (valor != 0 && data != '') {
@@ -21,6 +22,10 @@ function InputAmortizacao() {
 			updateAmortizacao([...amortizacao, update]);
 			setValor(0);
 			setData('');
+
+			const updateTodasAsDatas = [...todasAsDatas, data].sort().reverse();
+			setTodasAsDatas(updateTodasAsDatas);
+
 			return;
 		}
 		alert('Insira um valor e uma data');

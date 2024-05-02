@@ -29,4 +29,6 @@ export const useValores = create<valoresT>((set) => ({
 	setTaxaDesejada: (taxaDesejada) => set({ taxaDesejada }),
 	valorPadrao: false,
 	setValorPadrao: (valorPadrao) => set({ valorPadrao }),
+	todasAsDatas: [],
+	setTodasAsDatas: (todasAsDatas) => set({ todasAsDatas }),
 }));
