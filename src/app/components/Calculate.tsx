@@ -83,12 +83,6 @@ function Calculate() {
 
 	return (
 		<div>
-			<button
-				className="bg-green-600 hover:bg-green-700 rounded-md p-2 mt-4 active:translate-y-1 transition-all"
-				onClick={calcular}
-			>
-				Calcular
-			</button>
 			{taxaDesejada > 0 && (
 				<p className="text-2xl mt-4">
 					A taxa precisa ser de:{' '}
@@ -97,6 +91,12 @@ function Calculate() {
 					</span>
 				</p>
 			)}
+			<button
+				className="bg-green-600 hover:bg-green-700 rounded-md p-2 mt-4 active:translate-y-1 transition-all"
+				onClick={calcular}
+			>
+				Calcular
+			</button>
 		</div>
 	);
 }
